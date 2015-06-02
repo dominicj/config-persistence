@@ -1,0 +1,24 @@
+{
+  "name": "config-persistence",
+  "version": "1.0.0",
+  "description": "A middleware to persist configuration",
+  "main": "index.js",
+  "scripts": {
+    "test": "mocha test/*"
+  },
+  "keywords": [
+    "redis",
+    "persistance",
+    "configuration",
+    "config"
+  ],
+  "author": "Luis Elizondo",
+  "license": "MIT",
+  "dependencies": {
+    "async": "^1.2.0",
+    "lodash": "^3.9.3",
+    "q": "^1.4.1",
+    "redis": "^0.12.1",
+    "should": "^6.0.3"
+  }
+}
