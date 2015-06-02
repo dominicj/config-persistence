@@ -1,7 +1,7 @@
 {
   "name": "config-persistence",
   "version": "1.0.0",
-  "description": "A middleware to persist configuration",
+  "description": "Node.js module to help you persist configuration in a Redis database",
   "main": "index.js",
   "scripts": {
     "test": "mocha test/*"
