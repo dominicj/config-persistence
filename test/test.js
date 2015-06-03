@@ -3,10 +3,10 @@ var should = require("should");
 var assert = require("assert");
 var redis = require("redis");
 
-var db = 2;
+var db = "config";
 var options = {
 	port: 6379,
-	host: "localhost"
+	host: "127.0.0.1"
 }
 
 describe("Config Persistance", function() {

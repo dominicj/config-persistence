@@ -4,7 +4,7 @@
   "description": "Node.js module to help you persist configuration in a Redis database",
   "main": "index.js",
   "scripts": {
-    "test": "./node_modules/mocha/bin/mocha test/*"
+    "test": "make test-all"
   },
   "keywords": [
     "redis",
