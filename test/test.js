@@ -3,20 +3,19 @@ var should = require("should");
 var assert = require("assert");
 var redis = require("redis");
 
-var db = "config";
+var db = 0;
 var options = {
 	port: 6379,
-	host: "localhost"
+	host: process.env.REDIS_HOST
 }
 
 describe("Config Persistance", function() {
-
-	// beforeEach(function(done) {
-	// 	var client = redis.createClient(options.port, options.host, options);
-	// 	client.FLUSHALL(function(err, result) {
-	// 		done();
-	// 	})
-	// });
+	beforeEach(function(done) {
+		var client = redis.createClient(options.port, options.host, options);
+		client.FLUSHALL(function(err, result) {
+			done();
+		})
+	});
 
 	describe("Instance", function() {
 		it("Should test if config is an instance of Config", function(done) {
@@ -29,18 +28,20 @@ describe("Config Persistance", function() {
 	});
 
 	describe("Initialize", function() {
-		it("Should Initialize a config object", function(done) {
+		it("Should initialize a config object", function(done) {
 			var config = new Config(db, options);
 			var settings = {
 				foo: "bar"
 			}
 			config.init(settings);
 
-			var client = redis.createClient(options.port, options.host, options);
-			client.get("foo", function(err, result) {
-				result.should.be.a.String;
-				result.should.be.equal(settings.foo);
-				done();
+			config.on("initialized", function() {
+				var client = redis.createClient(options.port, options.host, options);
+				client.get("foo", function(err, result) {
+					result.should.be.a.String;
+					result.should.be.equal(settings.foo);
+					done();
+				});
 			});
 		});
 	});
@@ -60,8 +61,8 @@ describe("Config Persistance", function() {
 		});
 	});
 
-	describe("Set", function() {
-		it("Should set a new key", function(done) {
+	describe("mset", function() {
+		it("Should set a group of keys", function(done) {
 			var config = new Config(db, options);
 			var settings = {
 				foo: "bar"
@@ -69,19 +70,31 @@ describe("Config Persistance", function() {
 			config.init(settings);
 
 			config.on("initialized", function(results) {
-				config.set("redis", "Is awesome");
+				var change = {
+					foo: "Is not bar anymore",
+					redis: "Is awesome"
+				}
+
+				config.mset(change);
 			});
 
-			config.on("set:redis", function(res) {
+			config.on("mset", function(res) {
 				var client = redis.createClient(options.port, options.host, options);
 				client.get("redis", function(err, result) {
 					result.should.be.a.String;
 					result.should.be.equal("Is awesome");
-					done();
+
+					client.get("foo", function(err, result) {
+						result.should.be.a.String;
+						result.should.be.equal("Is not bar anymore");
+						done();
+					})
 				});
 			});
 		});
+	});
 
+	describe("Set", function() {
 		it("Should replace an old key", function(done) {
 			var config = new Config(db, options);
 			var settings = {

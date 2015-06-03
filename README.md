@@ -1,6 +1,6 @@
 # config-persistence
 
-This module helps you persist some configuration in a Redis database. Read the example below to understand the motivations.
+This module helps you persist configuration in a Redis database. Read the example below to understand the motivations.
 
 ### Install
 
@@ -25,7 +25,7 @@ If you need to boot a node.js application with some default values, but then an 
 		
 		config.init(settings); // initialize with events
 
-		config.on("initialize", function(settings) {
+		config.on("initialized", function(settings) {
 			// do something with the values
 		});
 
