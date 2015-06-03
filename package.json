@@ -4,7 +4,7 @@
   "description": "Node.js module to help you persist configuration in a Redis database",
   "main": "index.js",
   "scripts": {
-    "test": "mocha test/*"
+    "test": "./node_modules/mocha/bin/mocha test/*"
   },
   "keywords": [
     "redis",
@@ -18,7 +18,10 @@
     "async": "^1.2.0",
     "lodash": "^3.9.3",
     "q": "^1.4.1",
-    "redis": "^0.12.1",
-    "should": "^6.0.3"
+    "redis": "^0.12.1"
+  },
+  "devDependencies": {
+    "should": "^6.0.3",
+    "mocha": "~2.2.5"
   }
 }
