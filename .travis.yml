@@ -6,3 +6,5 @@
   - "0.6"
 services:
   - redis-server
+env:
+  - DB=redis
