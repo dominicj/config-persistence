@@ -6,7 +6,7 @@ var redis = require("redis");
 var db = "config";
 var options = {
 	port: 6379,
-	host: "127.0.0.1"
+	host: "localhost"
 }
 
 describe("Config Persistance", function() {
