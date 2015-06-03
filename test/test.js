@@ -11,6 +11,13 @@ var options = {
 
 describe("Config Persistance", function() {
 
+	// beforeEach(function(done) {
+	// 	var client = redis.createClient(options.port, options.host, options);
+	// 	client.FLUSHALL(function(err, result) {
+	// 		done();
+	// 	})
+	// });
+
 	describe("Instance", function() {
 		it("Should test if config is an instance of Config", function(done) {
 
@@ -133,14 +140,6 @@ describe("Config Persistance", function() {
 	});
 
 	describe("Get all", function() {
-
-		beforeEach(function(done) {
-			var client = redis.createClient(options.port, options.host, options);
-			client.FLUSHALL(function(err, result) {
-				done();
-			})
-		});
-
 		it("Should get all keys", function(done) {
 			var config = new Config(db, options);
 			var settings = {
