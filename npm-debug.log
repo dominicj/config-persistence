@@ -1,0 +1,91 @@
+0 info it worked if it ends with ok
+1 verbose cli [ 'node', '/usr/local/bin/npm', 'publish' ]
+2 info using npm@2.5.1
+3 info using node@v0.12.1
+4 verbose publish [ '.' ]
+5 silly cache add args [ '.', null ]
+6 verbose cache add spec .
+7 silly cache add parsed spec { raw: '.',
+7 silly cache add   scope: null,
+7 silly cache add   name: null,
+7 silly cache add   rawSpec: '.',
+7 silly cache add   spec: '/Users/luis/Code/config-persistence',
+7 silly cache add   type: 'directory' }
+8 verbose addLocalDirectory /Users/luis/.npm/config-persistence/1.0.0/package.tgz not in flight; packing
+9 verbose tar pack [ '/Users/luis/.npm/config-persistence/1.0.0/package.tgz',
+9 verbose tar pack   '/Users/luis/Code/config-persistence' ]
+10 verbose tarball /Users/luis/.npm/config-persistence/1.0.0/package.tgz
+11 verbose folder /Users/luis/Code/config-persistence
+12 info prepublish config-persistence@1.0.0
+13 verbose addLocalTarball adding from inside cache /Users/luis/.npm/config-persistence/1.0.0/package.tgz
+14 silly cache afterAdd config-persistence@1.0.0
+15 verbose afterAdd /Users/luis/.npm/config-persistence/1.0.0/package/package.json not in flight; writing
+16 verbose afterAdd /Users/luis/.npm/config-persistence/1.0.0/package/package.json written
+17 silly publish { name: 'config-persistence',
+17 silly publish   version: '1.0.0',
+17 silly publish   description: 'Node.js module to help you persist configuration in a Redis database',
+17 silly publish   main: 'index.js',
+17 silly publish   scripts: { test: 'make test-all' },
+17 silly publish   keywords: [ 'redis', 'persistance', 'configuration', 'config' ],
+17 silly publish   author: { name: 'Luis Elizondo' },
+17 silly publish   license: 'MIT',
+17 silly publish   dependencies:
+17 silly publish    { async: '^1.2.0',
+17 silly publish      lodash: '^3.9.3',
+17 silly publish      q: '^1.4.1',
+17 silly publish      redis: '^0.12.1' },
+17 silly publish   devDependencies: { should: '^6.0.3', mocha: '~2.2.5' },
+17 silly publish   readme: '# config-persistence\n\nThis module helps you persist configuration in a Redis database. Read the example below to understand the motivations.\n\n### Install\n\n\t\tnpm install config-persistance\n\n### Example\n\nIf you need to boot a node.js application with some default values, but then an administration needs to change those values without rebooting the whole application, this module helps you save your configuration in Redis.\n\n### Use\n\n\t\tvar db = 2;\n\t\tvar options = {\n\t\t\tport: 6379,\n\t\t\thost: "localhost"\n\t\t}\n\n\t\tvar config = new Config(db, options);\n\t\tvar settings = {\n\t\t\tfoo: "bar"\n\t\t}\n\t\t\n\t\tconfig.init(settings); // initialize with events\n\n\t\tconfig.on("initialized", function(settings) {\n\t\t\t// do something with the values\n\t\t});\n\n\t\t// change the values\n\t\tconfig.set("foo", "Foo is not bar anymore");\n\n\t\tconfig.on("set:foo", function(value) {\n\t\t\tconsole.log("Use the name of the key as the event and then get the value");\n\t\t});\n\n\t\tconfig.get("foo", function(err, value) {\n\t\t\t// get the value of foo\n\t\t});\n\n\t\tconfig.get("foo")\n\t\t.then(function(value) {\n\t\t\tconsole.log("Works with promises too");\n\t\t})\n\t\t.fail(function(err) {\n\t\t\tconsole.log(err);\n\t\t});\n\n',
+17 silly publish   readmeFilename: 'README.md',
+17 silly publish   gitHead: '1693adf502466071d8c3702003b50642f8dce01d',
+17 silly publish   _id: 'config-persistence@1.0.0',
+17 silly publish   _shasum: '74dbb2100ea191cafb5edcaeebaf823d465b0572',
+17 silly publish   _from: '.' }
+18 silly mapToRegistry name config-persistence
+19 silly mapToRegistry using default registry
+20 silly mapToRegistry registry https://registry.npmjs.org/
+21 silly mapToRegistry uri https://registry.npmjs.org/config-persistence
+22 verbose publish registryBase https://registry.npmjs.org/
+23 silly publish uploading /Users/luis/.npm/config-persistence/1.0.0/package.tgz
+24 verbose request uri https://registry.npmjs.org/config-persistence
+25 verbose request sending authorization for write operation
+26 info attempt registry request try #1 at 11:30:55 AM
+27 verbose request id 7208d2f53c6c9396
+28 http request PUT https://registry.npmjs.org/config-persistence
+29 http 403 https://registry.npmjs.org/config-persistence
+30 verbose headers { 'content-type': 'application/json',
+30 verbose headers   'cache-control': 'max-age=60',
+30 verbose headers   'content-length': '95',
+30 verbose headers   'accept-ranges': 'bytes',
+30 verbose headers   date: 'Wed, 03 Jun 2015 16:30:56 GMT',
+30 verbose headers   via: '1.1 varnish',
+30 verbose headers   connection: 'keep-alive',
+30 verbose headers   'x-served-by': 'cache-dfw1821-DFW',
+30 verbose headers   'x-cache': 'MISS',
+30 verbose headers   'x-cache-hits': '0',
+30 verbose headers   'x-timer': 'S1433349055.714581,VS0,VE296' }
+31 verbose request invalidating /Users/luis/.npm/registry.npmjs.org/config-persistence on PUT
+32 error publish Failed PUT 403
+33 verbose stack Error: "You cannot publish over the previously published version 1.0.0." : config-persistence
+33 verbose stack     at CachingRegistryClient.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:254:14)
+33 verbose stack     at Request._callback (/usr/local/lib/node_modules/npm/node_modules/npm-registry-client/lib/request.js:178:14)
+33 verbose stack     at Request.self.callback (/usr/local/lib/node_modules/npm/node_modules/request/request.js:344:22)
+33 verbose stack     at Request.emit (events.js:110:17)
+33 verbose stack     at Request.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1239:14)
+33 verbose stack     at Request.emit (events.js:129:20)
+33 verbose stack     at IncomingMessage.<anonymous> (/usr/local/lib/node_modules/npm/node_modules/request/request.js:1187:12)
+33 verbose stack     at IncomingMessage.emit (events.js:129:20)
+33 verbose stack     at _stream_readable.js:908:16
+33 verbose stack     at process._tickCallback (node.js:355:11)
+34 verbose statusCode 403
+35 verbose pkgid config-persistence
+36 verbose cwd /Users/luis/Code/config-persistence
+37 error Darwin 14.3.0
+38 error argv "node" "/usr/local/bin/npm" "publish"
+39 error node v0.12.1
+40 error npm  v2.5.1
+41 error code E403
+42 error "You cannot publish over the previously published version 1.0.0." : config-persistence
+43 error If you need help, you may report this error at:
+43 error     <http://github.com/npm/npm/issues>
+44 verbose exit [ 1, true ]

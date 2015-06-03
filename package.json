@@ -1,6 +1,6 @@
 {
   "name": "config-persistence",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "description": "Node.js module to help you persist configuration in a Redis database",
   "main": "index.js",
   "scripts": {
