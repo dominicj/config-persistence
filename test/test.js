@@ -44,6 +44,27 @@ describe("Config Persistance", function() {
 				});
 			});
 		});
+
+		it("Should initialize a config object twice and not replace values", function(done) {
+			var config = new Config(db, options);
+			var settings = {
+				foo: "bar"
+			}
+			
+			var client = redis.createClient(options.port, options.host, options);
+			client.set("foo", "Is not bar", function(err, result) {
+				// when init is run, it should not replace the value of foo
+				config.init(settings);
+			});
+			
+			config.on("initialized", function() {
+				client.get("foo", function(err, result) {
+					result.should.be.a.String;
+					result.should.be.equal("Is not bar");
+					done();
+				});
+			});
+		});
 	});
 
 	describe("Events", function() {
