@@ -1,6 +1,7 @@
 language: node_js
 node_js:
   - "0.10"
+sudo: required
 services:
   - redis-server
 branches:
@@ -8,5 +9,5 @@ branches:
     - master
 before_script:
   - echo ====================================================
-  - netstat -nlp4
+  - sudo netstat -nlp4
 script: npm test
