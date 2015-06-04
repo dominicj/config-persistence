@@ -9,3 +9,4 @@ branches:
 before_script:
   - echo ====================================================
   - netstat -nlp4
+script: npm test
