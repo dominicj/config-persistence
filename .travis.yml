@@ -4,6 +4,6 @@ env:
     secure: gP568cug/epCdsYJ02jKoKfu71y9NiroBpZp53/UXjaHyON5QCDOhYuesZUvpXJd0khVb61C8xVkq2HenDDG6mOXcwtXijrRQnNiO/tWPUZFcx80rAV0V3CtTzEKaB1BuF6LuSzRVTWUdAr1O22rZABSI+HpW6iPRVvMm1flj0iShY/NfvlFl5FEM/CUuAj8xr3a+1eCVxuC5DqdFG0ibgo0uxNTrqLzAjA9C2U+UildqaNWNgJxf+opRuioeJUSmziZ/CYPZH3BMsywShC8FBVaSQceqwv8mXtRT2ZC9YoZg4cxI09XFjbk62XJa7Xo2vu1IO+eyAt6OmKJiVq/UPBUp9Z1og5EkCQHUwN1zcoMg/jNOWXe881mwSlw45hwabnhyLwUW1qLHy0SN0vEGZsKb9MzftU/yzdJurLVVVX0Y0Vjh5z36c5XQKC0ZeAK962F7uREowYtfkDuiD2werKczcHBasNlLHRFqRBDUzoCMRqat+ptDcyutBedzcfUqdR5KoV39W6l5nF16tZ1p4yocAnudUL9DBqwycgJGJfTqwvjyy+EzxW3AoorvsNzU4tgu3S+RK95FhjgUoIH/SJzkRqOxMh4Km81WXwgExGtG/79L8+tGP7IoCovmatws/ojQUdiCscfUvONODml1l4p/lIw0X9nF0glBLkmVL4=
 before_script:
   - echo "************"
-  - if [ -z $MY_SECRET_KEY ];then echo "Key exist";else echo "Key does not exist";fi
+  - if [ "$MY_SECRET_KEY" == "" ];then echo "Empty";else echo $MY_SECRET_KEY;fi
   - echo "************"
 script: npm test
